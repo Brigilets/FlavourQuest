@@ -17,12 +17,14 @@ const Loading = lazy(()=> import('./components/Loading'))
 export const RecipesProvider = ({children}: {children:ReactNode})=>{
 const [recipes,setRecipes] = useState<any[]>([])
 const [loading,setLoading] = useState<boolean>(false)
+const appID = process.env.REACT_APP_EDAMAM_APP_ID
+const appKey = process.env.REACT_APP_EDAMAM_APP_KEY
 
 
 useEffect(()=>{
     async function fetchData(){
          try{
-            const res = await fetch('https://api.edamam.com/api/recipes/v2?type=public&beta=false&app_id=2fa908bc&app_key=e7e6cf73abca560a72839e16eea28ac0&mealType=Breakfast&mealType=Dinner&mealType=Lunch&mealType=Snack&mealType=Teatime')
+            const res = await fetch(`https://api.edamam.com/api/recipes/v2?type=public&beta=false&${appID}&${appKey}&mealType=Breakfast&mealType=Dinner&mealType=Lunch&mealType=Snack&mealType=Teatime`)
             const data =await  res.json()
 
             setRecipes(data)
