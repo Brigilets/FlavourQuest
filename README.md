@@ -1,6 +1,6 @@
-## Recipe app built with React, Typescript and Vite
+## Recipe app built with React 18, Typescript and Vite
 
-Prequisites: 
+# Prequisites: 
 - Node
 
 
