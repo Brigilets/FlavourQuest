@@ -1,9 +1,12 @@
 
 import './App.css'
-import React  from 'react'
+import React , {lazy} from 'react'
 import { useRecipes } from './RecipesContext'
+const Footer = React.lazy(()=>import ('./components/Footer'))
 
-function App() {
+
+
+function App(){
 
   const recipes = useRecipes()
   console.log('recipes',recipes)
@@ -13,6 +16,9 @@ function App() {
 <>
 
  <div>hey there </div>
+
+ <Footer/>
+
 
 </>
   )
