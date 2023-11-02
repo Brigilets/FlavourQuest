@@ -1,5 +1,5 @@
 
-import './Home.css'
+import './Page.css'
 import React , { lazy,} from 'react'
 import { useRecipes } from '../RecipesContext'
 const Footer = React.lazy(()=>import ('../components/Footer'))
@@ -7,30 +7,35 @@ const Header = React.lazy(()=>import ('../components/Header'))
 const RecipeCard = lazy(()=> import ('../components/RecipeCard'))
 
 
-
-
-
 const Home: React.FC =()=>{
 
   const recipesContext=useRecipes()
-  console.log('recipes',recipesContext?.recipes)
+  const recipes = recipesContext !== null? recipesContext.recipes : null
 
+  if (recipes){
+  // minimizing the amount of data rendered 
+
+  const randomRecipes = [...recipes].sort(()=> Math.random()-0.5).slice(0,25)
 
   return (
 <>
-  <Header/>
-
- <div className='cardGrid'>
-    {recipesContext !== null
-    ? recipesContext.recipes.map((recipe)=><><RecipeCard name={recipe.recipe.label} cuisine={recipe.recipe.cuisineType} imgURL={recipe.recipe.images.REGULAR.url} /></>) 
-     : 'There are no recipes'}
- </div>
-
+<Header/>
+ <section className='cardGrid'>
+  
+    {
+   randomRecipes?.map((recipe)=><><RecipeCard key={recipe.recipe.source+recipe.recipe.label} name={recipe.recipe.label} cuisine={recipe.recipe.cuisineType} imgURL={recipe.recipe.images.REGULAR.url} /></>) 
+    }
+  
+ </section>
  <Footer/>
-
-
-</>
-  )
+ </>)} else {
+return (<>
+  <Header/>
+  <div>No recipes available at this time</div>
+  <Footer/>
+  </>)
+ }
+ 
 }
 
 export default Home

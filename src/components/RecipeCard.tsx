@@ -4,7 +4,8 @@ import './RecipeCard.css'
 type RecipeCardProps = {
     name:string;
     cuisine: string,
-    imgURL:string
+    imgURL:string,
+    key?: string
 }
 
 const RecipeCard: React.FC<RecipeCardProps>  = (props) =>{
