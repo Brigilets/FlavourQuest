@@ -1,4 +1,5 @@
 import React from 'react'
+import './RecipeCard.css'
 
 type RecipeCardProps = {
     name:string;
@@ -9,10 +10,10 @@ type RecipeCardProps = {
 const RecipeCard: React.FC<RecipeCardProps>  = (props) =>{
     return (
         <>
-        <div className='card-wrapper'>
+        <div className='cardWrapper'>
             <img alt=' recipe image' src={props.imgURL}/>
             <section>
-                <h3>{props.name}</h3>
+                <h4>{props.name}</h4>
                 <h5>{props.cuisine}</h5>
             </section>
         </div>
