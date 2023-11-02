@@ -1,21 +1,24 @@
 .footer{
-    min-width: 100vw;
-    max-width: 100vw;
+
     display: block;
     text-align: center;
+    align-items: center;
     background-color: rgb(24, 144, 82);
     font-weight: 500;
     color: rgb(219, 213, 213);
     font-size: 1.2em;
     padding: 0.5em;
-    overflow-y: hidden;
-    position: absolute;
+    position: fixed;
     bottom:0;
+    right: 0;
+    left:0;
 }
 .footer>span{
     font-weight: 800;
     margin-right: 2%;
 }
-a{ 
+.footer>a{ 
     margin-right: 1%;
+    font-size: 1.5em;
+    
 }

@@ -1,26 +1,37 @@
 
 import './App.css'
-import React , {lazy} from 'react'
-import { useRecipes } from './RecipesContext'
-const Footer = React.lazy(()=>import ('./components/Footer'))
+import React,{lazy}  from 'react'
+const Home = lazy(()=> import ('./pages/Home'))
+const Asian = lazy(()=> import ('./pages/Asian'))
+const American = lazy(()=> import ('./pages/American'))
+const EasternEuropean = lazy(()=> import ('./pages/EasternEuropean'))
+const French = lazy(()=> import ('./pages/French'))
+const Italian = lazy(()=> import ('./pages/Italian'))
+const Mediterranean = lazy(()=> import ('./pages/Mediterranean'))
+
+import { BrowserRouter,Routes, Route } from 'react-router-dom';
 
 
 
 function App(){
 
-  const recipes = useRecipes()
-  console.log('recipes',recipes)
+
 
 
   return (
-<>
-
- <div>hey there </div>
-
- <Footer/>
-
-
-</>
+<div>
+<BrowserRouter>
+<Routes>
+  <Route path='/' element={<Home/>}/>
+  <Route path='/asian' element={<Asian/>} />
+  <Route path='/american' element={<American/>} />
+  <Route path='/eastern-european' element={<EasternEuropean/>} />
+  <Route path='/french' element={<French/>} />
+  <Route path='/italian' element={<Italian/>} />
+  <Route path='/mediterranean' element={<Mediterranean/>} />
+</Routes>
+</BrowserRouter>
+</div>
   )
 }
 
