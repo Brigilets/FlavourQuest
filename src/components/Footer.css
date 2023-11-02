@@ -1,24 +1,22 @@
-.footer{
-
-    display: block;
-    text-align: center;
-    align-items: center;
-    background-color: rgb(24, 144, 82);
-    font-weight: 500;
-    color: rgb(219, 213, 213);
-    font-size: 1.2em;
-    padding: 0.5em;
-    position: fixed;
-    bottom:0;
-    right: 0;
-    left:0;
+.footer {
+  display: block;
+  text-align: center;
+  align-items: center;
+  background-color: rgb(24, 144, 82);
+  font-weight: 500;
+  color: rgb(219, 213, 213);
+  font-size: 1.2em;
+  padding: 0.5em;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
-.footer>span{
-    font-weight: 800;
-    margin-right: 2%;
+.footer > span {
+  font-weight: 800;
+  margin-right: 2%;
 }
-.footer>a{ 
-    margin-right: 1%;
-    font-size: 1.5em;
-    
+.footer > a {
+  margin-right: 1%;
+  font-size: 1.5em;
 }

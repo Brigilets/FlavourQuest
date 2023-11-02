@@ -1,22 +1,24 @@
-nav{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color:rgb(24, 144, 82) ;
-    color:rgb(219, 213, 213);
-    
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(24, 144, 82);
+  color: rgb(219, 213, 213);
 }
-nav h1{
-    margin-left: 1.5em;
-    width: fit-content;
+nav h1 {
+  margin-left: 1.5em;
+  width: fit-content;
 
-    font-weight: 900;
+  font-weight: 900;
 }
 .links > * {
-    font-size: 1.2em;
-    text-decoration: none;
-    margin-right:3em;
-    font-weight: 600;
-    color:rgb(219, 213, 213);
+  font-size: 1.2em;
+  text-decoration: none;
+  margin-right: 3em;
+  font-weight: 600;
+  color: rgb(219, 213, 213);
 }
 
+a.active {
+  color: rgb(200, 200, 75);
+}
