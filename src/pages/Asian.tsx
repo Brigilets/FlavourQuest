@@ -25,7 +25,11 @@ const Asian: React.FC = () => {
               <RecipeCard
                 key={recipe.recipe.label + recipe.recipe.source}
                 name={recipe.recipe.label}
-                cuisine={recipe.recipe.cuisineType}
+                cuisine={
+                  recipe.recipe.cuisineType.length > 1
+                    ? recipe.recipe.cuisineType.join(", ")
+                    : recipe.recipe.cuisineType
+                }
                 imgURL={recipe.recipe.images.REGULAR.url}
               />
             </>
