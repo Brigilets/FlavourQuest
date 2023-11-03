@@ -1,5 +1,5 @@
 import React, { lazy, useMemo } from "react";
-import { useRecipes } from "../RecipesContext";
+import { useRecipes } from "../utils";
 import "./Page.css";
 
 const Footer = React.lazy(() => import("../components/Footer"));
@@ -20,7 +20,7 @@ const French: React.FC = () => {
       <Header />
       <h2>Enjoy our French recipes!</h2>
       <section className="cardGrid">
-        {frenchRecipes !== undefined ? (
+        {frenchRecipes !== undefined && frenchRecipes.length >0 ? (
           frenchRecipes.map((recipe) => (
             <>
               <RecipeCard

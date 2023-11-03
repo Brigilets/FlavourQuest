@@ -1,6 +1,6 @@
 import React, { lazy, useMemo } from "react";
 import "./Page.css";
-import { useRecipes } from "../RecipesContext";
+import { useRecipes } from "../utils";
 const Footer = React.lazy(() => import("../components/Footer"));
 const Header = React.lazy(() => import("../components/Header"));
 const RecipeCard = lazy(() => import("../components/RecipeCard"));
@@ -19,7 +19,7 @@ const Asian: React.FC = () => {
       <Header />
       <h2>Enjoy our asian recipes!</h2>
       <div className="cardGrid">
-        {asianRecipes !== undefined ? (
+        {asianRecipes !== undefined && asianRecipes.length > 0 ? (
           asianRecipes.map((recipe) => (
             <>
               <RecipeCard

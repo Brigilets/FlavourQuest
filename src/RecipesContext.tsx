@@ -1,6 +1,6 @@
 import {
   createContext,
-  useContext,
+  
   ReactNode,
   useState,
   useEffect,
@@ -10,7 +10,7 @@ import {
 
 export const RecipesContext = createContext<RecipesContextType | null>(null);
 
-export const useRecipes = () => useContext(RecipesContext);
+
 
 export interface RecipesContextType {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
