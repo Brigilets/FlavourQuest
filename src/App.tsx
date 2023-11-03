@@ -7,6 +7,7 @@ const EasternEuropean = lazy(() => import("./pages/EasternEuropean"));
 const French = lazy(() => import("./pages/French"));
 const Italian = lazy(() => import("./pages/Italian"));
 const Mediterranean = lazy(() => import("./pages/Mediterranean"));
+// const RecipePage = lazy(() => import("./pages/RecipePage"));
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import RecipePage from "./pages/RecipePage";
