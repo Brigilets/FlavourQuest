@@ -5,7 +5,9 @@ const Header: React.FC = () => {
   return (
     <>
       <nav>
-        <h1>FlavourQuest</h1>
+        <NavLink to="/">
+          <h1>FlavourQuest</h1>
+        </NavLink>
         <section className="links">
           <NavLink to="/american">American</NavLink>
           <NavLink to="/asian">Asian</NavLink>

@@ -29,9 +29,8 @@ const EasternEuropean: React.FC = () => {
         {easternEuropeanRecipes !== undefined &&
         easternEuropeanRecipes.length > 0 ? (
           easternEuropeanRecipes.map((recipe) => (
-            <>
+            <React.Fragment key={recipe.recipe.label + recipe.recipe.source}>
               <RecipeCard
-                key={recipe.recipe.label + recipe.recipe.source}
                 name={recipe.recipe.label}
                 cuisine={
                   recipe.recipe.cuisineType.length > 1
@@ -40,7 +39,7 @@ const EasternEuropean: React.FC = () => {
                 }
                 imgURL={recipe.recipe.images.REGULAR.url}
               />
-            </>
+            </React.Fragment>
           ))
         ) : (
           <div>There are no Eastern European recipes at the moment</div>

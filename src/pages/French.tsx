@@ -14,22 +14,22 @@ const French: React.FC = () => {
       recipes?.filter((recipe) => recipe.recipe.cuisineType.includes("french")),
     [recipes]
   );
-  console.log("french recipes", frenchRecipes);
+
   return (
     <>
       <Header />
       <h2>Enjoy our French recipes!</h2>
       <section className="cardGrid">
-        {frenchRecipes !== undefined && frenchRecipes.length >0 ? (
+        {frenchRecipes !== undefined && frenchRecipes.length > 0 ? (
           frenchRecipes.map((recipe) => (
-            <>
+            <React.Fragment key={recipe.recipe.label + recipe.recipe.source}>
               <RecipeCard
                 key={recipe.recipe.label + recipe.recipe.source}
                 name={recipe.recipe.label}
                 cuisine={recipe.recipe.cuisineType}
                 imgURL={recipe.recipe.images.REGULAR.url}
               />
-            </>
+            </React.Fragment>
           ))
         ) : (
           <div>There are no French recipes at the moment</div>

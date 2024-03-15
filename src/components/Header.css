@@ -8,17 +8,29 @@ nav {
 nav h1 {
   margin-left: 1.5em;
   width: fit-content;
-
   font-weight: 900;
+  color: rgb(225, 218, 37);
 }
-.links > * {
+.links a {
   font-size: 1.2em;
   text-decoration: none;
   margin-right: 3em;
   font-weight: 600;
   color: rgb(219, 213, 213);
+  animation: transform 2s;
 }
 
 a.active {
   color: rgb(200, 200, 75);
+}
+nav a {
+  animation: transform 2s;
+  text-decoration: none;
+  color: rgb(219, 213, 213);
+}
+nav a:hover {
+  transform: scale(1.2);
+}
+nav .links a:hover {
+  transform: scale(1.2);
 }

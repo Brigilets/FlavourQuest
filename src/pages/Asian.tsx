@@ -21,9 +21,8 @@ const Asian: React.FC = () => {
       <div className="cardGrid">
         {asianRecipes !== undefined && asianRecipes.length > 0 ? (
           asianRecipes.map((recipe) => (
-            <>
+            <React.Fragment key={recipe.recipe.label + recipe.recipe.source}>
               <RecipeCard
-                key={recipe.recipe.label + recipe.recipe.source}
                 name={recipe.recipe.label}
                 cuisine={
                   recipe.recipe.cuisineType.length > 1
@@ -32,7 +31,7 @@ const Asian: React.FC = () => {
                 }
                 imgURL={recipe.recipe.images.REGULAR.url}
               />
-            </>
+            </React.Fragment>
           ))
         ) : (
           <div>There are no asian recipes at the moment</div>

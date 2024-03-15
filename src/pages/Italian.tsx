@@ -22,7 +22,7 @@ const Italian: React.FC = () => {
       <div className="cardGrid">
         {italianRecipes !== undefined && italianRecipes.length > 0 ? (
           italianRecipes.map((recipe) => (
-            <>
+            <React.Fragment key={recipe.recipe.label + recipe.recipe.source}>
               <RecipeCard
                 key={recipe.recipe.label + recipe.recipe.source}
                 name={recipe.recipe.label}
@@ -33,7 +33,7 @@ const Italian: React.FC = () => {
                 }
                 imgURL={recipe.recipe.images.REGULAR.url}
               />
-            </>
+            </React.Fragment>
           ))
         ) : (
           <div>There are no italian recipes at the moment</div>

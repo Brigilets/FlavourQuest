@@ -25,7 +25,7 @@ const Mediterranean: React.FC = () => {
         {mediterraneanRecipes !== undefined &&
         mediterraneanRecipes.length > 0 ? (
           mediterraneanRecipes.map((recipe) => (
-            <>
+            <React.Fragment key={recipe.recipe.label + recipe.recipe.source}>
               <RecipeCard
                 key={recipe.recipe.label + recipe.recipe.source}
                 name={recipe.recipe.label}
@@ -36,7 +36,7 @@ const Mediterranean: React.FC = () => {
                 }
                 imgURL={recipe.recipe.images.REGULAR.url}
               />
-            </>
+            </React.Fragment>
           ))
         ) : (
           <div>There are no mediterranean recipes at the moment</div>
