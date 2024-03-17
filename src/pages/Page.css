@@ -1,12 +1,24 @@
-.cardGrid{
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin-bottom: 3.5em;
+.cardGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-bottom: 3.5em;
 }
 .cardGrid > * {
-    flex: calc(20%);
-    flex-grow: 1;
-
+  flex: calc(20%);
+  flex-grow: 1;
 }
 
+h1 {
+  text-align: center;
+}
+
+.recipeInfo {
+  display: flex;
+  flex-direction: column;
+  padding-left: 2.2em;
+}
+
+.recipePage {
+  padding: 0em 3em 4em 3em;
+}

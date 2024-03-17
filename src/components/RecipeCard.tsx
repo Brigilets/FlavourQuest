@@ -1,13 +1,13 @@
-import React from "react";
+
 import "./RecipeCard.css";
 import { Link } from "react-router-dom";
-// import RecipePage from "../pages/RecipePage";
+
+
 
 type RecipeCardProps = {
   name: string;
   cuisine: string;
   imgURL: string;
-  // navigate?: (to: string | object) => void;
 };
 
 const RecipeCard: React.FC<RecipeCardProps> = (props) => {

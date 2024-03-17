@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React from "react";
 import ReactDOM from "react-dom/client";
 // import App from "./App.tsx";
@@ -16,6 +17,7 @@ const Italian = lazy(() => import("./pages/Italian"));
 const Mediterranean = lazy(() => import("./pages/Mediterranean"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage.tsx"));
 const RecipePage = lazy(() => import("./pages/RecipePage"));
+// const Layout = lazy(() => import("./pages/Layout"));
 
 const router = createBrowserRouter([
   {
@@ -49,13 +51,14 @@ const router = createBrowserRouter([
     errorElement: <NotFoundPage />,
   },
   {
-    path: "/mediterranian",
+    path: "/mediterranean",
     element: <Mediterranean />,
     errorElement: <NotFoundPage />,
   },
   {
     path: "/:cuisine/:name",
     element: <RecipePage />,
+    errorElement: <NotFoundPage />,
   },
 ]);
 
@@ -63,7 +66,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <RecipesProvider>
       <RouterProvider router={router} />
-      {/* <App /> */}
     </RecipesProvider>
   </React.StrictMode>
 );

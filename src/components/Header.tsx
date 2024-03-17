@@ -14,7 +14,7 @@ const Header: React.FC = () => {
           <NavLink to="/eastern-european">Eastern-european</NavLink>
           <NavLink to="/french">French</NavLink>
           <NavLink to="/italian">Italian</NavLink>
-          <NavLink to="/mediterranean">Mediterranian</NavLink>
+          <NavLink to="/mediterranean">Mediterranean</NavLink>
         </section>
       </nav>
     </>

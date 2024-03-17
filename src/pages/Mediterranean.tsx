@@ -1,4 +1,5 @@
 import React, { lazy, useMemo } from "react";
+import "./Page.css";
 
 import { useRecipes } from "../utils";
 
@@ -16,6 +17,8 @@ const Mediterranean: React.FC = () => {
       ),
     [recipes]
   );
+
+  console.log(mediterraneanRecipes);
 
   return (
     <>

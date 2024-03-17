@@ -6,6 +6,7 @@ import { useRecipes } from "../utils";
 const Footer = React.lazy(() => import("../components/Footer"));
 const Header = React.lazy(() => import("../components/Header"));
 const RecipeCard = lazy(() => import("../components/RecipeCard"));
+import "./Page.css";
 
 const Home: React.FC = () => {
   const recipesContext = useRecipes();

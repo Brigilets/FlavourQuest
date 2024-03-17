@@ -4,6 +4,7 @@ import { useRecipes } from "../utils";
 const Header = lazy(() => import("../components/Header"));
 const Footer = lazy(() => import("../components/Footer"));
 const RecipeCard = lazy(() => import("../components/RecipeCard"));
+import "./Page.css";
 
 const Italian: React.FC = () => {
   const recipeContext = useRecipes();

@@ -17,7 +17,7 @@ const Asian: React.FC = () => {
   return (
     <>
       <Header />
-      <h2>Enjoy our asian recipes!</h2>
+      <h1>Enjoy our asian recipes!</h1>
       <div className="cardGrid">
         {asianRecipes !== undefined && asianRecipes.length > 0 ? (
           asianRecipes.map((recipe) => (
