@@ -1,8 +1,8 @@
 import React from "react";
+// Didn't use lazy as it was causing rerender of the page
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-// const Header = lazy(() => import("../components/Header"));
-// const Footer = lazy(() => import("../components/Footer"));
+import { Outlet } from "react-router-dom";
 
 type Props = {
   children?: React.ReactNode;
@@ -13,6 +13,7 @@ const Layout: React.FC<React.PropsWithChildren<Props>> = ({ children }) => {
     <>
       <Header />
       <main>{children}</main>
+      <Outlet />
       <Footer />
     </>
   );

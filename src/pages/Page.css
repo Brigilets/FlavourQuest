@@ -1,6 +1,7 @@
 .cardGrid {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row;
   justify-content: space-around;
   margin-bottom: 3.5em;
 }
@@ -9,8 +10,14 @@
   flex-grow: 1;
 }
 
-h1 {
+.img {
+  height: 25em;
+  width: 25em;
+}
+
+h2 {
   text-align: center;
+  color: rgb(13, 69, 40);
 }
 
 .recipeInfo {
@@ -21,4 +28,8 @@ h1 {
 
 .recipePage {
   padding: 0em 3em 4em 3em;
+}
+
+.recipeLink {
+  color: rgb(24, 144, 82);
 }

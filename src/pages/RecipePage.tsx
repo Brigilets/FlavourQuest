@@ -3,30 +3,39 @@ import "./Page.css";
 import { useParams } from "react-router-dom";
 import { useRecipes } from "../utils";
 import NutritionalInfo from "../components/NutritionalInfo";
+import NotFoundPage from "./NotFoundPage";
+import Loading from "../components/Loading";
 const Recipe = lazy(() => import("../components/Recipe"));
-
-const Header = lazy(() => import("../components/Header"));
-const Footer = lazy(() => import("../components/Footer"));
 
 const RecipePage: React.FC = () => {
   const { name } = useParams();
+  const { cuisine } = useParams();
   const recipesContext = useRecipes();
   const recipes = recipesContext !== null ? recipesContext.recipes : null;
+  const isLoading = recipesContext !== null ? recipesContext.loading : null;
   const specificRecipe = useMemo(
-    () => recipes?.find((recipe) => recipe.recipe.label === name),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [name]
+    () =>
+      recipes?.find(
+        (recipe) =>
+          recipe.recipe.cuisineType[0] === cuisine &&
+          recipe.recipe.label === name
+      ),
+
+    [recipes, cuisine, name]
   );
   console.log("name", name);
+  console.log("cuisine", cuisine);
   console.log("specificRecipe", specificRecipe);
+
+  console.log("useRecipes: ", useRecipes()?.loading);
   if (!specificRecipe) {
-    return <div>Recipe not found</div>;
+    isLoading ? <Loading /> : <NotFoundPage />;
   }
+
   return (
     <>
-      <Header />
       <main className="recipePage">
-        <h1>{specificRecipe?.recipe.label}</h1>
+        <h2>{specificRecipe?.recipe.label}</h2>
         <section style={{ display: "flex", flexDirection: "row" }}>
           <img
             className="img"
@@ -36,25 +45,28 @@ const RecipePage: React.FC = () => {
           <section className="recipeInfo">
             <Recipe
               ingredients={specificRecipe.recipe.ingredientLines}
-              keyVal={
-                specificRecipe?.recipe.label + specificRecipe.recipe.source
-              }
+              keyVal={specificRecipe.recipe.ingredientLines.toString()}
             />
+            <h4>
+              Find the full recipe{" "}
+              <a
+                className="recipeLink"
+                href={specificRecipe.recipe.url}
+                target="_blank"
+              >
+                Here
+              </a>
+            </h4>
             <NutritionalInfo
               quantity={
                 specificRecipe.recipe.totalNutrients.ENERC_KCAL.quantity
               }
               unit={specificRecipe.recipe.totalNutrients.ENERC_KCAL.unit}
+              noServings={specificRecipe.recipe.yield}
             />
-            <h4>
-              Find the original source{" "}
-              <a href={specificRecipe.recipe.url}>Here</a>
-            </h4>
           </section>
         </section>
       </main>
-
-      <Footer />
     </>
   );
 };

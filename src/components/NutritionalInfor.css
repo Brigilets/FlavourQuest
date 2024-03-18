@@ -1,0 +1,12 @@
+.dataGrid {
+  display: flex;
+  flex-direction: column;
+}
+.dataGrid p {
+  margin-top: 0; /* Remove top margin */
+  margin-bottom: 0.2em; /* Set a small bottom margin for spacing */
+  font-size: 1.2em;
+}
+h3 {
+  margin: auto 0;
+}

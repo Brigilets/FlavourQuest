@@ -1,8 +1,5 @@
-
 import "./RecipeCard.css";
 import { Link } from "react-router-dom";
-
-
 
 type RecipeCardProps = {
   name: string;
@@ -14,10 +11,7 @@ const RecipeCard: React.FC<RecipeCardProps> = (props) => {
   const to = `/${props.cuisine}/${props.name}`;
   return (
     <>
-      <div
-        className="cardWrapper"
-        // onClick={() => props.navigate?.("../pages/RecipePage")}
-      >
+      <div className="cardWrapper">
         <img alt=" recipe image" src={props.imgURL} />
         <Link
           to={to}

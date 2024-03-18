@@ -1,14 +1,24 @@
 import React, { lazy, useMemo } from "react";
-import { useRecipes } from "../utils";
+import useSearch, { useRecipes } from "../utils";
 
-const Header = lazy(() => import("../components/Header"));
-const Footer = lazy(() => import("../components/Footer"));
 const RecipeCard = lazy(() => import("../components/RecipeCard"));
 import "./Page.css";
+import SearchBar from "../components/Searchbar";
+import NotFoundPage from "./NotFoundPage";
+import Loading from "../components/Loading";
 
 const Italian: React.FC = () => {
-  const recipeContext = useRecipes();
-  const recipes = recipeContext !== null ? recipeContext.recipes : null;
+  const recipesContext = useRecipes();
+  const recipes =
+    recipesContext !== undefined && recipesContext !== null
+      ? recipesContext.recipes
+      : undefined;
+  const isLoading = recipesContext !== null ? recipesContext.loading : null;
+
+  const { searchTerm, filteredRecipes, handleSearchSubmit } = useSearch({
+    recipes,
+  });
+
   const italianRecipes = useMemo(
     () =>
       recipes?.filter((recipe) =>
@@ -18,29 +28,42 @@ const Italian: React.FC = () => {
   );
   return (
     <>
-      <Header />
-      <h2>Enjoy our italian recipes!</h2>
-      <div className="cardGrid">
-        {italianRecipes !== undefined && italianRecipes.length > 0 ? (
-          italianRecipes.map((recipe) => (
-            <React.Fragment key={recipe.recipe.label + recipe.recipe.source}>
-              <RecipeCard
-                key={recipe.recipe.label + recipe.recipe.source}
-                name={recipe.recipe.label}
-                cuisine={
-                  recipe.recipe.cuisineType.length > 1
-                    ? recipe.recipe.cuisineType.join(", ")
-                    : recipe.recipe.cuisineType
-                }
-                imgURL={recipe.recipe.images.REGULAR.url}
-              />
-            </React.Fragment>
-          ))
-        ) : (
-          <div>There are no italian recipes at the moment</div>
-        )}
-      </div>
-      <Footer />
+      {isLoading ? (
+        <Loading />
+      ) : recipes && recipes.length > 0 ? (
+        <>
+          <SearchBar searchTerm={searchTerm} onSubmit={handleSearchSubmit} />
+          <section className="cardGrid">
+            {filteredRecipes.length > 0
+              ? filteredRecipes.map((recipe) => (
+                  <React.Fragment
+                    key={recipe.recipe.label + recipe.recipe.source}
+                  >
+                    <RecipeCard
+                      key={recipe.recipe.label + recipe.recipe.source}
+                      name={recipe.recipe.label}
+                      cuisine={recipe.recipe.cuisineType}
+                      imgURL={recipe.recipe.images.REGULAR.url}
+                    />
+                  </React.Fragment>
+                ))
+              : italianRecipes?.map((recipe) => (
+                  <React.Fragment
+                    key={recipe.recipe.label + recipe.recipe.source}
+                  >
+                    <RecipeCard
+                      key={recipe.recipe.label + recipe.recipe.source}
+                      name={recipe.recipe.label}
+                      cuisine={recipe.recipe.cuisineType}
+                      imgURL={recipe.recipe.images.REGULAR.url}
+                    />
+                  </React.Fragment>
+                ))}
+          </section>
+        </>
+      ) : (
+        <NotFoundPage />
+      )}
     </>
   );
 };

@@ -1,20 +1,24 @@
 import React, { lazy, useMemo } from "react";
-import { useRecipes } from "../utils";
+import useSearch, { useRecipes } from "../utils";
 
 import "./Page.css";
-import { Outlet, useNavigate } from "react-router-dom";
-
-const Header = lazy(() => import("../components/Header"));
-const Footer = lazy(() => import("../components/Footer"));
+import Loading from "../components/Loading";
+import SearchBar from "../components/Searchbar";
+import NotFoundPage from "./NotFoundPage";
 const RecipeCard = lazy(() => import("../components/RecipeCard"));
 
 const American: React.FC = () => {
-  const recipeContext = useRecipes();
-  const redirect = useNavigate();
-  const currentUrl = window.location.pathname;
+  const recipesContext = useRecipes();
 
-  const recipes = recipeContext !== null ? recipeContext.recipes : null;
+  const recipes =
+    recipesContext !== undefined && recipesContext !== null
+      ? recipesContext.recipes
+      : undefined;
+  const isLoading = recipesContext !== null ? recipesContext.loading : null;
 
+  const { searchTerm, filteredRecipes, handleSearchSubmit } = useSearch({
+    recipes,
+  });
   const americanRecipes = useMemo(
     () =>
       recipes?.filter((recipe) =>
@@ -23,36 +27,44 @@ const American: React.FC = () => {
     [recipes]
   );
 
-  const handleClick = (name: string) => {
-    redirect(`${currentUrl}/${name}`);
-  };
-
   return (
     <>
-      <Header />
-      <h1>Enjoy our american recipes!</h1>
-      <div className="cardGrid">
-        {americanRecipes !== undefined && americanRecipes.length > 0 ? (
-          americanRecipes.map((recipe) => (
-            <React.Fragment key={recipe.recipe.label + recipe.recipe.source}>
-              <RecipeCard
-                name={recipe.recipe.label}
-                cuisine={
-                  recipe.recipe.cuisineType.length > 1
-                    ? recipe.recipe.cuisineType.join(", ")
-                    : recipe.recipe.cuisineType
-                }
-                imgURL={recipe.recipe.images.REGULAR.url}
-                onClick={() => handleClick(recipe.recipe.label)}
-              />
-            </React.Fragment>
-          ))
-        ) : (
-          <div>There are no american recipes at the moment</div>
-        )}
-      </div>
-      <Outlet />
-      <Footer />
+      {isLoading ? (
+        <Loading />
+      ) : recipes && recipes.length > 0 ? (
+        <>
+          <SearchBar searchTerm={searchTerm} onSubmit={handleSearchSubmit} />
+          <section className="cardGrid">
+            {filteredRecipes.length > 0
+              ? filteredRecipes.map((recipe) => (
+                  <React.Fragment
+                    key={recipe.recipe.label + recipe.recipe.source}
+                  >
+                    <RecipeCard
+                      key={recipe.recipe.label + recipe.recipe.source}
+                      name={recipe.recipe.label}
+                      cuisine={recipe.recipe.cuisineType}
+                      imgURL={recipe.recipe.images.REGULAR.url}
+                    />
+                  </React.Fragment>
+                ))
+              : americanRecipes?.map((recipe) => (
+                  <React.Fragment
+                    key={recipe.recipe.label + recipe.recipe.source}
+                  >
+                    <RecipeCard
+                      key={recipe.recipe.label + recipe.recipe.source}
+                      name={recipe.recipe.label}
+                      cuisine={recipe.recipe.cuisineType}
+                      imgURL={recipe.recipe.images.REGULAR.url}
+                    />
+                  </React.Fragment>
+                ))}
+          </section>
+        </>
+      ) : (
+        <NotFoundPage />
+      )}
     </>
   );
 };

@@ -1,56 +1,65 @@
-import "./Page.css";
-import React, { lazy } from "react";
-import { useRecipes } from "../utils";
-// import { Link } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
-const Footer = React.lazy(() => import("../components/Footer"));
-const Header = React.lazy(() => import("../components/Header"));
-const RecipeCard = lazy(() => import("../components/RecipeCard"));
-import "./Page.css";
+import React from "react";
+import useSearch, { useRecipes } from "../utils";
+import RecipeCard from "../components/RecipeCard";
+import Loading from "../components/Loading";
+import NotFoundPage from "./NotFoundPage";
+import SearchBar from "../components/Searchbar";
+
 
 const Home: React.FC = () => {
+
+
   const recipesContext = useRecipes();
-  const recipes = recipesContext !== null ? recipesContext.recipes : null;
+  const recipes = recipesContext?.recipes;
+  const isLoading = recipesContext?.loading;
 
-  // const navigate = useNavigate();
+  const { searchTerm, filteredRecipes, handleSearchSubmit } = useSearch({
+    recipes,
+  });
 
-  if (recipes && recipes.length > 0) {
-    // minimizing the amount of data rendered
+  const randomRecipes =
+    recipes && [...recipes].sort(() => Math.random() - 0.5).slice(0, 50);
 
-    const randomRecipes = [...recipes]
-      .sort(() => Math.random() - 0.5)
-      .slice(0, 25);
-
-    return (
-      <>
-        <Header />
-        <section className="cardGrid">
-          {randomRecipes?.map((recipe) => (
-            <React.Fragment key={recipe.recipe.label + recipe.recipe.source}>
-              {/* <Link to={`${recipe.recipe.cuisineType}/${recipe.recipe.label}`}> */}
-              <RecipeCard
-                key={recipe.recipe.label + recipe.recipe.source}
-                name={recipe.recipe.label}
-                cuisine={recipe.recipe.cuisineType}
-                imgURL={recipe.recipe.images.REGULAR.url}
-                // navigate={navigate}
-              />
-              {/* </Link> */}
-            </React.Fragment>
-          ))}
-        </section>
-        <Footer />
-      </>
-    );
-  } else {
-    return (
-      <>
-        <Header />
-        <div>No recipes available at this time</div>
-        <Footer />
-      </>
-    );
-  }
+  return (
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : recipes && recipes.length > 0 ? (
+        <>
+          <SearchBar searchTerm={searchTerm} onSubmit={handleSearchSubmit} />
+          <section className="cardGrid">
+            {filteredRecipes.length > 0
+              ? filteredRecipes.map((recipe) => (
+                  <React.Fragment
+                    key={recipe.recipe.label + recipe.recipe.source}
+                  >
+                    <RecipeCard
+                      key={recipe.recipe.label + recipe.recipe.source}
+                      name={recipe.recipe.label}
+                      cuisine={recipe.recipe.cuisineType}
+                      imgURL={recipe.recipe.images.REGULAR.url}
+                    />
+                  </React.Fragment>
+                ))
+              : randomRecipes?.map((recipe) => (
+                  <React.Fragment
+                    key={recipe.recipe.label + recipe.recipe.source}
+                  >
+                    <RecipeCard
+                      key={recipe.recipe.label + recipe.recipe.source}
+                      name={recipe.recipe.label}
+                      cuisine={recipe.recipe.cuisineType}
+                      imgURL={recipe.recipe.images.REGULAR.url}
+                    />
+                  </React.Fragment>
+                ))}
+          </section>
+        </>
+      ) : (
+        <NotFoundPage />
+      )}
+    </>
+  );
 };
 
 export default Home;

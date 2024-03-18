@@ -1,16 +1,14 @@
 import {
   createContext,
-  
   ReactNode,
   useState,
   useEffect,
   lazy,
   Suspense,
+  memo,
 } from "react";
 
 export const RecipesContext = createContext<RecipesContextType | null>(null);
-
-
 
 export interface RecipesContextType {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -29,7 +27,7 @@ const cuisineTypes = [
 
 const Loading = lazy(() => import("./components/Loading"));
 
-export const RecipesProvider = ({ children }: { children: ReactNode }) => {
+export const RecipesProvider = memo(({ children }: { children: ReactNode }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [recipes, setRecipes] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -64,12 +62,18 @@ export const RecipesProvider = ({ children }: { children: ReactNode }) => {
     if (!isFetched) {
       fetchData();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isFetched]);
+  }, [appID, appKey, isFetched]);
+
+  useEffect(() => {
+    if (isFetched && recipes.length) {
+      // Store fetched recipes in local storage only after successful retrieval
+      localStorage.setItem("recipes", JSON.stringify(recipes));
+    }
+  }, [isFetched, recipes]);
 
   return (
     <RecipesContext.Provider value={{ recipes, loading }}>
       <Suspense fallback={<Loading />}>{children}</Suspense>
     </RecipesContext.Provider>
   );
-};
+});
