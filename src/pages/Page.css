@@ -33,3 +33,33 @@ h2 {
 .recipeLink {
   color: rgb(24, 144, 82);
 }
+
+@media screen and (max-width: 940px) {
+  .cardGrid {
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 3em;
+  }
+  .cardGrid > * {
+    flex: calc(25% - 20px);
+    flex-grow: 1;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .cardGrid {
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 3em;
+  }
+  .cardGrid > * {
+    flex: calc(50%);
+    flex-grow: 1;
+  }
+}

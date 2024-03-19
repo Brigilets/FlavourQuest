@@ -1,7 +1,8 @@
 .cardWrapper {
   border: 2px solid rgb(24, 144, 82);
   border-radius: 5%;
-  max-width: 15%;
+  max-width: 18%;
+  max-height: 15%;
   margin: 1em;
   display: flex;
   flex-direction: column;

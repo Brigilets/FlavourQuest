@@ -5,6 +5,7 @@ type RecipeCardProps = {
   name: string;
   cuisine: string;
   imgURL: string;
+  // noOnClick 
 };
 
 const RecipeCard: React.FC<RecipeCardProps> = (props) => {

@@ -6,6 +6,7 @@ import {
   lazy,
   Suspense,
   memo,
+  useCallback,
 } from "react";
 
 export const RecipesContext = createContext<RecipesContextType | null>(null);
@@ -36,8 +37,8 @@ export const RecipesProvider = memo(({ children }: { children: ReactNode }) => {
   const appID = import.meta.env.VITE_REACT_APP_EDAMAM_APP_ID;
   const appKey = import.meta.env.VITE_REACT_APP_EDAMAM_APP_KEY;
 
-  useEffect(() => {
-    async function fetchData() {
+  const fetchData = useCallback(
+    async (appID: string, appKey: string, cuisineTypes: string[]) => {
       const fetchedRecipes = [];
       try {
         for (const cuisine of cuisineTypes) {
@@ -57,12 +58,18 @@ export const RecipesProvider = memo(({ children }: { children: ReactNode }) => {
       } catch (error) {
         console.error("Error fetching data: ", error);
       }
-    }
+    },
+    [setLoading, setRecipes, setIsFetched]
+  );
 
-    if (!isFetched) {
-      fetchData();
-    }
-  }, [appID, appKey, isFetched]);
+  useEffect(() => {
+    const getData = async () => {
+      if (!isFetched) {
+        fetchData(appID, appKey, cuisineTypes);
+      }
+    };
+    getData();
+  }, [isFetched, fetchData, appID, appKey]);
 
   useEffect(() => {
     if (isFetched && recipes.length) {

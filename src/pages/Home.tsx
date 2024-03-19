@@ -13,7 +13,7 @@ const Home: React.FC = () => {
   const recipes = recipesContext?.recipes;
   const isLoading = recipesContext?.loading;
 
-  const { searchTerm, filteredRecipes, handleSearchSubmit } = useSearch({
+  const {  filteredRecipes, handleSearchSubmit } = useSearch({
     recipes,
   });
 
@@ -26,7 +26,7 @@ const Home: React.FC = () => {
         <Loading />
       ) : recipes && recipes.length > 0 ? (
         <>
-          <SearchBar searchTerm={searchTerm} onSubmit={handleSearchSubmit} />
+          <SearchBar  onSubmit={handleSearchSubmit} />
           <section className="cardGrid">
             {filteredRecipes.length > 0
               ? filteredRecipes.map((recipe) => (

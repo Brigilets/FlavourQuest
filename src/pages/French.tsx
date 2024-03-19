@@ -12,7 +12,7 @@ const French: React.FC = () => {
   const recipes = recipesContext !== undefined  && recipesContext !== null? recipesContext.recipes : undefined;
   const isLoading = recipesContext !== null ? recipesContext.loading : null;
 
-  const { searchTerm, filteredRecipes, handleSearchSubmit } = useSearch({recipes});
+  const {  filteredRecipes, handleSearchSubmit } = useSearch({recipes});
 
   const frenchRecipes = useMemo(
     () =>
@@ -26,7 +26,7 @@ const French: React.FC = () => {
         <Loading />
       ) : recipes && recipes.length > 0 ? (
         <>
-          <SearchBar searchTerm={searchTerm} onSubmit={handleSearchSubmit} />
+          <SearchBar onSubmit={handleSearchSubmit} />
           <section className="cardGrid">
             {filteredRecipes.length > 0
               ? filteredRecipes.map((recipe) => (

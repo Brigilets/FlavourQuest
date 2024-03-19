@@ -16,7 +16,7 @@ const American: React.FC = () => {
       : undefined;
   const isLoading = recipesContext !== null ? recipesContext.loading : null;
 
-  const { searchTerm, filteredRecipes, handleSearchSubmit } = useSearch({
+  const { filteredRecipes, handleSearchSubmit } = useSearch({
     recipes,
   });
   const americanRecipes = useMemo(
@@ -33,7 +33,7 @@ const American: React.FC = () => {
         <Loading />
       ) : recipes && recipes.length > 0 ? (
         <>
-          <SearchBar searchTerm={searchTerm} onSubmit={handleSearchSubmit} />
+          <SearchBar onSubmit={handleSearchSubmit} />
           <section className="cardGrid">
             {filteredRecipes.length > 0
               ? filteredRecipes.map((recipe) => (
@@ -41,7 +41,7 @@ const American: React.FC = () => {
                     key={recipe.recipe.label + recipe.recipe.source}
                   >
                     <RecipeCard
-                      key={recipe.recipe.label + recipe.recipe.source}
+                      // key={recipe.recipe.label + recipe.recipe.source}
                       name={recipe.recipe.label}
                       cuisine={recipe.recipe.cuisineType}
                       imgURL={recipe.recipe.images.REGULAR.url}
@@ -53,7 +53,7 @@ const American: React.FC = () => {
                     key={recipe.recipe.label + recipe.recipe.source}
                   >
                     <RecipeCard
-                      key={recipe.recipe.label + recipe.recipe.source}
+                      // key={recipe.recipe.label + recipe.recipe.source}
                       name={recipe.recipe.label}
                       cuisine={recipe.recipe.cuisineType}
                       imgURL={recipe.recipe.images.REGULAR.url}

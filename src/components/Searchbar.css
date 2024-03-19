@@ -1,0 +1,17 @@
+.searchForm > * {
+  font-size: 1.5em;
+  margin-right: 0.5em;
+  padding: 0.2em;
+  border: 2px solid rgb(24, 144, 82);
+  border-radius: 5%;
+  color: rgb(24, 144, 82);
+}
+.searchForm {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 1em 2.2em;
+}
+.searchForm input::placeholder {
+  color: rgb(24, 144, 82);
+}

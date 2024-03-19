@@ -1,35 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
+import "./Searchbar.css";
 
 type Search = {
-  searchTerm: string;
+
   onSubmit: (term: string) => void;
 };
 
-const SearchBar: React.FC<Search> = ({ searchTerm, onSubmit }) => {
+const SearchBar: React.FC<Search> = ({ onSubmit }) => {
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onSubmit(searchTerm);
+  };
 
   return (
     <>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          onSubmit(searchTerm);
-        }}
-      >
+      <form className="searchForm" onSubmit={handleSubmit}>
         <input
           type="text"
           value={searchTerm}
-          onChange={(e) => onSubmit(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              e.preventDefault();
-              onSubmit(searchTerm);
-            }
-          }}
-          style={{
-            color: "blue",
-            fontSize: "2em",
-          }}
+          onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Search for recipes..."
           aria-label="Search for recipes"
         />
