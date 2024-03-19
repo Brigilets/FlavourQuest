@@ -9,10 +9,13 @@ const RecipeCard = lazy(() => import("../components/RecipeCard"));
 
 const French: React.FC = () => {
   const recipesContext = useRecipes();
-  const recipes = recipesContext !== undefined  && recipesContext !== null? recipesContext.recipes : undefined;
+  const recipes =
+    recipesContext !== undefined && recipesContext !== null
+      ? recipesContext.recipes
+      : undefined;
   const isLoading = recipesContext !== null ? recipesContext.loading : null;
 
-  const {  filteredRecipes, handleSearchSubmit } = useSearch({recipes});
+  const { filteredRecipes, handleSearchSubmit } = useSearch({ recipes });
 
   const frenchRecipes = useMemo(
     () =>
@@ -34,7 +37,6 @@ const French: React.FC = () => {
                     key={recipe.recipe.label + recipe.recipe.source}
                   >
                     <RecipeCard
-                      key={recipe.recipe.label + recipe.recipe.source}
                       name={recipe.recipe.label}
                       cuisine={recipe.recipe.cuisineType}
                       imgURL={recipe.recipe.images.REGULAR.url}
@@ -46,7 +48,6 @@ const French: React.FC = () => {
                     key={recipe.recipe.label + recipe.recipe.source}
                   >
                     <RecipeCard
-                      key={recipe.recipe.label + recipe.recipe.source}
                       name={recipe.recipe.label}
                       cuisine={recipe.recipe.cuisineType}
                       imgURL={recipe.recipe.images.REGULAR.url}

@@ -26,42 +26,15 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />{" "}
-        <Route
-          path="asian"
-          element={<Asian />}
-          errorElement={<NotFoundPage />}
-        />{" "}
-        <Route
-          path="american"
-          element={<American />}
-          errorElement={<NotFoundPage />}
-        />
-        <Route
-          path="eastern-european"
-          element={<EasternEuropean />}
-          errorElement={<NotFoundPage />}
-        />
-        <Route
-          path="french"
-          element={<French />}
-          errorElement={<NotFoundPage />}
-        />
-        <Route
-          path="italian"
-          element={<Italian />}
-          errorElement={<NotFoundPage />}
-        />
-        <Route
-          path="mediterranean"
-          element={<Mediterranean />}
-          errorElement={<NotFoundPage />}
-        />
-        <Route
-          path=":cuisine/:name"
-          element={<RecipePage />}
-          errorElement={<NotFoundPage />}
-        />
+        <Route index element={<Home />} />
+        <Route path="asian" element={<Asian />} />{" "}
+        <Route path="american" element={<American />} />
+        <Route path="eastern-european" element={<EasternEuropean />} />
+        <Route path="french" element={<French />} />
+        <Route path="italian" element={<Italian />} />
+        <Route path="mediterranean" element={<Mediterranean />} />
+        <Route path=":cuisine/:name" element={<RecipePage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </>
   )

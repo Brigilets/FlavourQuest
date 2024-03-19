@@ -23,11 +23,7 @@ const RecipePage: React.FC = () => {
 
     [recipes, cuisine, name]
   );
-  console.log("name", name);
-  console.log("cuisine", cuisine);
-  console.log("specificRecipe", specificRecipe);
 
-  console.log("useRecipes: ", useRecipes()?.loading);
   if (!specificRecipe) {
     isLoading ? <Loading /> : <NotFoundPage />;
   }

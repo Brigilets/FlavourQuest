@@ -14,12 +14,7 @@ const RecipeCard: React.FC<RecipeCardProps> = (props) => {
     <>
       <div className="cardWrapper">
         <img alt=" recipe image" src={props.imgURL} />
-        <Link
-          to={to}
-          onClick={() =>
-            console.log(`Navigating to: ${props.cuisine}/${props.name}`)
-          }
-        >
+        <Link to={to}>
           <section>
             <h4>{props.name}</h4>
             <h5>{props.cuisine}</h5>

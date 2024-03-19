@@ -15,7 +15,7 @@ const Asian: React.FC = () => {
       : undefined;
   const isLoading = recipesContext !== null ? recipesContext.loading : null;
 
-  const {filteredRecipes, handleSearchSubmit } = useSearch({
+  const { filteredRecipes, handleSearchSubmit } = useSearch({
     recipes,
   });
   const asianRecipes = useMemo(
@@ -37,7 +37,6 @@ const Asian: React.FC = () => {
                     key={recipe.recipe.label + recipe.recipe.source}
                   >
                     <RecipeCard
-                      key={recipe.recipe.label + recipe.recipe.source}
                       name={recipe.recipe.label}
                       cuisine={recipe.recipe.cuisineType}
                       imgURL={recipe.recipe.images.REGULAR.url}
@@ -49,7 +48,6 @@ const Asian: React.FC = () => {
                     key={recipe.recipe.label + recipe.recipe.source}
                   >
                     <RecipeCard
-                      key={recipe.recipe.label + recipe.recipe.source}
                       name={recipe.recipe.label}
                       cuisine={recipe.recipe.cuisineType}
                       imgURL={recipe.recipe.images.REGULAR.url}

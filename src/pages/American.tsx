@@ -41,7 +41,6 @@ const American: React.FC = () => {
                     key={recipe.recipe.label + recipe.recipe.source}
                   >
                     <RecipeCard
-                      // key={recipe.recipe.label + recipe.recipe.source}
                       name={recipe.recipe.label}
                       cuisine={recipe.recipe.cuisineType}
                       imgURL={recipe.recipe.images.REGULAR.url}
@@ -53,7 +52,6 @@ const American: React.FC = () => {
                     key={recipe.recipe.label + recipe.recipe.source}
                   >
                     <RecipeCard
-                      // key={recipe.recipe.label + recipe.recipe.source}
                       name={recipe.recipe.label}
                       cuisine={recipe.recipe.cuisineType}
                       imgURL={recipe.recipe.images.REGULAR.url}

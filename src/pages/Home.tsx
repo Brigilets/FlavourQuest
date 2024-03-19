@@ -5,15 +5,12 @@ import Loading from "../components/Loading";
 import NotFoundPage from "./NotFoundPage";
 import SearchBar from "../components/Searchbar";
 
-
 const Home: React.FC = () => {
-
-
   const recipesContext = useRecipes();
   const recipes = recipesContext?.recipes;
   const isLoading = recipesContext?.loading;
 
-  const {  filteredRecipes, handleSearchSubmit } = useSearch({
+  const { filteredRecipes, handleSearchSubmit } = useSearch({
     recipes,
   });
 
@@ -26,7 +23,7 @@ const Home: React.FC = () => {
         <Loading />
       ) : recipes && recipes.length > 0 ? (
         <>
-          <SearchBar  onSubmit={handleSearchSubmit} />
+          <SearchBar onSubmit={handleSearchSubmit} />
           <section className="cardGrid">
             {filteredRecipes.length > 0
               ? filteredRecipes.map((recipe) => (
@@ -34,7 +31,6 @@ const Home: React.FC = () => {
                     key={recipe.recipe.label + recipe.recipe.source}
                   >
                     <RecipeCard
-                      key={recipe.recipe.label + recipe.recipe.source}
                       name={recipe.recipe.label}
                       cuisine={recipe.recipe.cuisineType}
                       imgURL={recipe.recipe.images.REGULAR.url}
@@ -46,7 +42,6 @@ const Home: React.FC = () => {
                     key={recipe.recipe.label + recipe.recipe.source}
                   >
                     <RecipeCard
-                      key={recipe.recipe.label + recipe.recipe.source}
                       name={recipe.recipe.label}
                       cuisine={recipe.recipe.cuisineType}
                       imgURL={recipe.recipe.images.REGULAR.url}

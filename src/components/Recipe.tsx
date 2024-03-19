@@ -6,7 +6,6 @@ type RecipeProps = {
   keyVal: string[];
 };
 const Recipe: React.FC<RecipeProps> = (props) => {
-  console.log("key", props.keyVal);
   return (
     <>
       <h3>Ingredients</h3>

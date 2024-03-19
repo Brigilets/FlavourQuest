@@ -10,15 +10,14 @@ const RecipeCard = lazy(() => import("../components/RecipeCard"));
 const EasternEuropean: React.FC = () => {
   const recipesContext = useRecipes();
   const recipes =
-  recipesContext !== undefined && recipesContext !== null
-    ? recipesContext.recipes
-    : undefined;
-const isLoading = recipesContext !== null ? recipesContext.loading : null;
+    recipesContext !== undefined && recipesContext !== null
+      ? recipesContext.recipes
+      : undefined;
+  const isLoading = recipesContext !== null ? recipesContext.loading : null;
 
-const { filteredRecipes, handleSearchSubmit } = useSearch({
-  recipes,
-});
-
+  const { filteredRecipes, handleSearchSubmit } = useSearch({
+    recipes,
+  });
 
   const easternEuropeanRecipes = useMemo(
     () =>
@@ -28,47 +27,43 @@ const { filteredRecipes, handleSearchSubmit } = useSearch({
     [recipes]
   );
 
-  console.log(easternEuropeanRecipes);
-
   return (
     <>
-    {isLoading ? (
-      <Loading />
-    ) : recipes && recipes.length > 0 ? (
-      <>
-        <SearchBar onSubmit={handleSearchSubmit} />
-        <section className="cardGrid">
-          {filteredRecipes.length > 0
-            ? filteredRecipes.map((recipe) => (
-                <React.Fragment
-                  key={recipe.recipe.label + recipe.recipe.source}
-                >
-                  <RecipeCard
+      {isLoading ? (
+        <Loading />
+      ) : recipes && recipes.length > 0 ? (
+        <>
+          <SearchBar onSubmit={handleSearchSubmit} />
+          <section className="cardGrid">
+            {filteredRecipes.length > 0
+              ? filteredRecipes.map((recipe) => (
+                  <React.Fragment
                     key={recipe.recipe.label + recipe.recipe.source}
-                    name={recipe.recipe.label}
-                    cuisine={recipe.recipe.cuisineType}
-                    imgURL={recipe.recipe.images.REGULAR.url}
-                  />
-                </React.Fragment>
-              ))
-            : easternEuropeanRecipes?.map((recipe) => (
-                <React.Fragment
-                  key={recipe.recipe.label + recipe.recipe.source}
-                >
-                  <RecipeCard
+                  >
+                    <RecipeCard
+                      name={recipe.recipe.label}
+                      cuisine={recipe.recipe.cuisineType}
+                      imgURL={recipe.recipe.images.REGULAR.url}
+                    />
+                  </React.Fragment>
+                ))
+              : easternEuropeanRecipes?.map((recipe) => (
+                  <React.Fragment
                     key={recipe.recipe.label + recipe.recipe.source}
-                    name={recipe.recipe.label}
-                    cuisine={recipe.recipe.cuisineType}
-                    imgURL={recipe.recipe.images.REGULAR.url}
-                  />
-                </React.Fragment>
-              ))}
-        </section>
-      </>
-    ) : (
-      <NotFoundPage />
-    )}
-  </>
+                  >
+                    <RecipeCard
+                      name={recipe.recipe.label}
+                      cuisine={recipe.recipe.cuisineType}
+                      imgURL={recipe.recipe.images.REGULAR.url}
+                    />
+                  </React.Fragment>
+                ))}
+          </section>
+        </>
+      ) : (
+        <NotFoundPage />
+      )}
+    </>
   );
 };
 

@@ -34,6 +34,19 @@ h2 {
   color: rgb(24, 144, 82);
 }
 
+.notFoundP {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.notFoundP a {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.5em;
+}
+
 @media screen and (max-width: 940px) {
   .cardGrid {
     width: 100vw;

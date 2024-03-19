@@ -51,7 +51,7 @@ export const RecipesProvider = memo(({ children }: { children: ReactNode }) => {
 
           fetchedRecipes.push(...data.hits);
         }
-        console.log(fetchedRecipes);
+
         setRecipes(fetchedRecipes);
         setLoading(false);
         setIsFetched(true);

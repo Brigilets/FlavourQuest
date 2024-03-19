@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import "./Loading.css";
 
-const Loading: React.FC  = () =>{
-return (
+const Loading: React.FC = () => {
+  return (
     <>
-<p>Bare with use, your recipes are nearly there!</p>
-</>
-)
-}
+      <h2>Bare with use, your recipes are nearly there!</h2>
+    </>
+  );
+};
 
-export default Loading
+export default Loading;

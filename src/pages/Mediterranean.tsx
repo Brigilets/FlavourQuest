@@ -16,7 +16,7 @@ const Mediterranean: React.FC = () => {
       : undefined;
   const isLoading = recipesContext !== null ? recipesContext.loading : null;
 
-  const {  filteredRecipes, handleSearchSubmit } = useSearch({
+  const { filteredRecipes, handleSearchSubmit } = useSearch({
     recipes,
   });
 
@@ -27,8 +27,6 @@ const Mediterranean: React.FC = () => {
       ),
     [recipes]
   );
-
-  console.log(mediterraneanRecipes);
 
   return (
     <>
@@ -44,7 +42,6 @@ const Mediterranean: React.FC = () => {
                     key={recipe.recipe.label + recipe.recipe.source}
                   >
                     <RecipeCard
-                      key={recipe.recipe.label + recipe.recipe.source}
                       name={recipe.recipe.label}
                       cuisine={recipe.recipe.cuisineType}
                       imgURL={recipe.recipe.images.REGULAR.url}
@@ -56,7 +53,6 @@ const Mediterranean: React.FC = () => {
                     key={recipe.recipe.label + recipe.recipe.source}
                   >
                     <RecipeCard
-                      key={recipe.recipe.label + recipe.recipe.source}
                       name={recipe.recipe.label}
                       cuisine={recipe.recipe.cuisineType}
                       imgURL={recipe.recipe.images.REGULAR.url}
