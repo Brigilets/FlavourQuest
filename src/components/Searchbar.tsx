@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "./Searchbar.css";
 
-type Search = {
-
+export type Search = {
   onSubmit: (term: string) => void;
 };
 

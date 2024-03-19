@@ -34,7 +34,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgb(24, 144, 82) !important;
+  background-color: rgb(22, 116, 65) !important;
   color: rgb(219, 213, 213);
   width: 100vw;
   position: relative;
@@ -44,7 +44,7 @@ nav h1 {
   width: fit-content;
   font-weight: 900;
 
-  color: rgb(225, 218, 37);
+  color: rgb(240, 234, 127);
 }
 
 a.active {
@@ -53,7 +53,7 @@ a.active {
 nav a {
   animation: transform 2s;
   text-decoration: none;
-  color: rgb(219, 213, 213);
+  color: rgb(243, 242, 242);
 }
 nav a:hover {
   transform: scale(1.2);
