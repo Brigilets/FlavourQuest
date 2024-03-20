@@ -6,7 +6,7 @@ import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 const Footer: React.FC = () => {
   return (
     <>
-      <footer className="footer">
+      <footer data-testid="footer" className="footer">
         FlavourQuest by <span>Brigita Sabutyte</span>
         <a target="_blank" rel="noreferrer" href="https://github.com/Brigilets">
           <FontAwesomeIcon

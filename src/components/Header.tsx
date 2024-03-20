@@ -35,7 +35,7 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <nav>
+      <nav data-testid="header">
         <NavLink to="/">
           <h1>FlavourQuest</h1>
         </NavLink>
