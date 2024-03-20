@@ -13,7 +13,9 @@ dist-ssr
 *.local
 .env
 
-src/components/Header.test.tsx
+src/components/Footer.test.tsx
+src/pages/Home.test.tsx
+src/MockRecipeContext.tsx
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

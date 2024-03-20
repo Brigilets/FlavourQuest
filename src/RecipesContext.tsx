@@ -61,10 +61,27 @@ export const RecipesProvider = memo(({ children }: { children: ReactNode }) => {
     },
     [setLoading, setRecipes, setIsFetched]
   );
-
+  // add comments if might forget why
   useEffect(() => {
+    // done to prevent UI blocks
     const getData = async () => {
-      if (!isFetched) {
+      const numItemsLocalStorage = localStorage.getItem("recipes")?.length;
+
+      if (numItemsLocalStorage !== undefined && numItemsLocalStorage > 0) {
+        // if local storage is not empty and num exists, retreive data from local storage in order to make less api calls and have faster data retrieval
+        try {
+          const storedRecipes = localStorage.getItem("recipes");
+          const parsedRecipes =
+            storedRecipes !== null ? JSON.parse(storedRecipes) : null;
+          setRecipes(parsedRecipes);
+          setIsFetched(true);
+          console.log("using recipes from local storage");
+        } catch (error) {
+          console.error("Error parsing stored recipes:", error);
+        }
+      }
+
+      if (!isFetched && numItemsLocalStorage && numItemsLocalStorage < 0) {
         fetchData(appID, appKey, cuisineTypes);
       }
     };
